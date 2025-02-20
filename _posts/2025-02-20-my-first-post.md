@@ -1,3 +1,4 @@
+# first blog
 *The content of this blog is based on my learning experience on TryHackMe. I am a paid member and use ChatGPT to help me understand the relevant knowledge. All articles are based on my personal study summaries and are not direct copies of TryHackMe's official content. Instead, they reflect my understanding and organization of the courses, aiming to help others who are interested in cybersecurity but lack a foundational background.*
 
 I have been learning **Cybersecurity** on TryHackMe since November 2024, with the goal of becoming a **Cybersecurity Penetration Tester**. 
