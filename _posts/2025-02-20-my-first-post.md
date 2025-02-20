@@ -1,3 +1,12 @@
+---
+layout: post
+title: "My First Blog Post"
+date: 2025-02-20
+tags: [cybersecurity, blog]
+---
+
+
+
 I have been learning cybersecurity on TryHackMe since November 2024, with the goal of becoming a Cybersecurity Penetration Tester. 
 I started with Cyber Security 101, a course designed for beginners. I am nearly finished and would like to summarize what I have learned, with the goal of sharing this knowledge with individuals who have little to no background in computer science or cybersecurity.
 I will write it in both English and Chinese, with translations provided by ChatGPT.
