@@ -1,2 +1,2 @@
 # my-blog
-This blog will record my learning of cyber security journey.
+This blog will chronicle my journey in learning cybersecurity.
