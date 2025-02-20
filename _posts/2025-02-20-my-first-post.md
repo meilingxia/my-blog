@@ -6,3 +6,4 @@ I will write it in both English and Chinese, with translations provided by ChatG
 我从Cyber Security 101课程开始，这是一个为初学者设计的课程。我快完成了这门课程，并希望总结我所学的内容，目标是将这些知识分享给那些几乎没有计算机科学或网络安全背景的人。  
 我将用英语和中文两种语言写，翻译将由ChatGPT提供。
 
+![image](https://github.com/user-attachments/assets/ceeca187-b884-46c2-b57f-94682246855e)
