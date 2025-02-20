@@ -2,6 +2,7 @@
 I have been learning **Cybersecurity** on TryHackMe since November 2024, with the goal of becoming a **Cybersecurity Penetration Tester**. 
 I started with *Cyber Security 101*, a course designed for beginners. 
 I am nearly finished and would like to summarize what I have learned, with the goal of sharing this knowledge with individuals who have little to no background in computer science or cybersecurity.
+
 I will write it mainly in English, and some will be translated into Chinese, with translations provided by ChatGPT.
 
 我从2024年11月开始在TryHackMe学习网络安全知识，目标是成为一名网络安全渗透测试员。  
