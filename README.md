@@ -4,4 +4,4 @@
 
 [2025-02-20 OSI Model Layers](https://github.com/meilingxia/my-blog/blob/main/_posts/2025-02-20-OSI-Model-Layers.md)
 
-[2025-02-22 HTTP](https://github.com/meilingxia/my-blog/blob/main/_posts/2025-02-22-HTTP.md)
+[2025-02-22 HTTP Methods](https://github.com/meilingxia/my-blog/blob/main/_posts/2025-02-22-HTTP-methods.md)
