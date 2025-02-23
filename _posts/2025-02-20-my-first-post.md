@@ -6,8 +6,12 @@ I have been learning **Cybersecurity** on TryHackMe since November 2024, with th
 
 ![image](https://github.com/user-attachments/assets/ceeca187-b884-46c2-b57f-94682246855e)
 
-**updated on 2025-02-23**:
+**updated on 2025-02-23**:<br>
 Pre-security training (level: Easy) is accomplished.<br>
 Cyber Security 101 (level: Easy) is accomplished.
 
 ![image](https://github.com/user-attachments/assets/9305ceaf-85e8-4f92-bee5-54599c45f0a5)
+
+
+**What's the next**:<br>
+![image](https://github.com/user-attachments/assets/d7e38d15-f685-4841-b9b8-de70d3d261f7)
