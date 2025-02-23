@@ -31,7 +31,7 @@ Send data to the web server.
 
 |Another sample|Expanation|
 | --- | ----------- |
-|**POST** /submit-comment HTTP/1.1<br>Host: myblog.com <br>Content-Type: application/x-www-form-urlencoded<br>Content-Length: 36<br>name=Alice&comment=Hello+World%21|POST /submit-comment HTTP/1.1 <br>Host: myblog.com <br> → The client is sending data to /submit-comment on myblog.com. <br>Content-Type: application/x-www-form-urlencoded → The data is URL-encoded.<br>Content-Length: 36 → The body contains 36 bytes of data.<br>Body: name=Alice&comment=Hello+World%21<br>name=Alice → The name field contains "Alice".<br>comment=Hello+World%21 → The comment field contains "Hello World!" (%21 is the encoded version of !).|
+|**POST** /submit-comment HTTP/1.1<br>Host: myblog.com <br><br>Content-Type: application/x-www-form-urlencoded<br><br>Content-Length: 36<br><br>name=Alice&comment=Hello+World%21|The client is sending data to /submit-comment on myblog.com. <br><br><br><br> The data is URL-encoded.<br><br> The body contains 36 bytes of data.<br><br>Body, Name = "Alice"<br>comment="Hello World!", %21 is the encoded version of "!".|
 
 #### Q&A with chatgpt
 **Question:**
