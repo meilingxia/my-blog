@@ -1,3 +1,60 @@
+#### 好的，以下是关于“自动化发现”的中文翻译：
+
+**什么是自动化发现？**
+
+自动化发现是指使用工具来发现内容，而不是手动进行。这个过程是自动化的，因为它通常包含对Web服务器的数百、数千甚至数百万个请求。这些请求检查网站上是否存在文件或目录，从而使我们能够访问以前不知道存在的资源。这个过程是通过使用一种名为“字典”的资源实现的。
+
+**什么是字典？**
+
+字典只是包含常用单词长列表的文本文件；它们可以涵盖许多不同的用例。例如，密码字典将包含最常用的密码，而我们在这里寻找的是内容，因此我们需要一个包含最常用目录和文件名的列表。一个优秀的字典资源（预安装在THM AttackBox上）是[https://github.com/danielmiessler/SecLists](https://github.com/danielmiessler/SecLists)，由Daniel Miessler维护。
+
+**自动化工具**
+
+尽管有许多不同的内容发现工具可用，它们各有特点和缺点，但我们将介绍三个预安装在我们的攻击机上的工具：ffuf、dirb和gobuster。
+
+在AttackBox上执行以下三个命令，以Acme IT Support网站为目标，并查看你得到的结果。
+
+**关键术语解释：**
+
+* **Automated Discovery (自动化发现):** 使用工具自动查找网站上的隐藏文件和目录的过程。
+* **Wordlists (字典):** 包含大量单词或短语的文本文件，用于自动化发现或密码破解等任务。
+* **AttackBox:** 在TryHackMe环境中提供的攻击机，预装了各种渗透测试工具。
+* **ffuf, dirb, gobuster:** 用于Web目录和文件发现的常用工具。
+
+
+
+
+#### S3 Buckets的中文翻译：
+
+**S3存储桶**
+
+S3存储桶是亚马逊AWS提供的一种存储服务，允许人们在云端保存文件，甚至静态网站内容，并通过HTTP和HTTPS访问。文件所有者可以设置访问权限，使文件公开、私有甚至可写。有时，这些访问权限设置不正确，无意中允许访问本不应公开的文件。S3存储桶的格式是http(s)://{名称}.s3.amazonaws.com，其中{名称}由所有者决定，[例如tryhackme-assets.s3.amazonaws.com](https://www.google.com/search?q=%E4%BE%8B%E5%A6%82tryhackme-assets.s3.amazonaws.com)。S3存储桶可以通过多种方式发现，例如在网站的页面源代码、GitHub存储库中查找URL，甚至可以自动化该过程。一种常见的自动化方法是使用公司名称，后跟常见术语，例如{名称}-assets、{名称}-www、{名称}-public、{名称}-private等。
+
+**关键术语解释：**
+
+* **S3 Buckets (S3存储桶):** 亚马逊AWS提供的云存储服务，用于存储各种类型的数据。
+* **AWS (Amazon Web Services):** 亚马逊网络服务，提供云计算服务的集合。
+* **HTTP (Hypertext Transfer Protocol):** 超文本传输协议，用于在网络上传输数据的协议。
+* **HTTPS (Hypertext Transfer Protocol Secure):** 安全超文本传输协议，HTTP的加密版本。
+* **Access Permissions (访问权限):** 控制用户或应用程序对资源访问级别的设置。
+* **Static Website Content (静态网站内容):** 不随用户交互而变化的网站内容，例如HTML、CSS和JavaScript文件。
+* **Page Source (页面源代码):** 网页的HTML代码。
+* **GitHub Repositories (GitHub存储库):** 用于托管软件开发项目的在线存储库。
+
+
+
+
+#### github
+You can use GitHub's search feature to look for company names or website names to try and locate repositories belonging to your target. Once discovered, you may have access to source code, passwords or other content that you hadn't yet found.
+
+#### Wayback Machine
+
+The Wayback Machine (https://archive.org/web/) is a historical archive of websites that dates back to the late 90s. You can search a domain name, and it will show you all the times the service scraped the web page and saved the contents. This service can help uncover old pages that may still be active on the current website.
+
+#### Wappalyzer (https://www.wappalyzer.com/)
+is an online tool and browser extension that helps identify what technologies a website uses, such as frameworks, Content Management Systems (CMS), payment processors and much more, and it can even find version numbers as well.
+
+
 /robots.txt
 
 ![image](https://github.com/user-attachments/assets/57fee8da-8159-4382-b9d7-05809a968791)
