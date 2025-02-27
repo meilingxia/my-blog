@@ -1,3 +1,52 @@
+#### ffuf
+
+
+ffuf -w /usr/share/wordlists/SecLists/Usernames/Names/names.txt -X POST -d "username=FUZZ&email=x&password=x&cpassword=x" -H "Content-Type: application/x-www-form-urlencoded" -u http://10.10.78.180/customers/signup -mr "username already exists"
+
+The ffuf tool and wordlist come pre-installed on the AttackBox or can be installed locally by downloading it from https://github.com/ffuf/ffuf.
+
+Let's break down this `ffuf` command, which is commonly used in web application security testing, especially for fuzzing.
+
+**`ffuf`**
+
+* This is the command itself. `ffuf` stands for "Fuzz Faster U Fool." It's a web fuzzer designed for speed and efficiency.
+
+**`-w /usr/share/wordlists/SecLists/Usernames/Names/names.txt`**
+
+* `-w` specifies the wordlist to use.
+* `/usr/share/wordlists/SecLists/Usernames/Names/names.txt` is the path to a file containing a list of usernames. `SecLists` is a very popular collection of wordlists for security testing. This part of the command tells ffuf to use every line of the names.txt file as input.
+
+**`-X POST`**
+
+* `-X` specifies the HTTP method to use. In this case, it's `POST`. This indicates that the request will send data to the server. This is important because signup forms typically use the POST method.
+
+**`-d "username=FUZZ&email=x&password=x&cpassword=x"`**
+
+* `-d` specifies the data to be sent in the POST request.
+* `username=FUZZ&email=x&password=x&cpassword=x` is the data itself.
+    * `username=FUZZ`: This is the crucial part. `FUZZ` is a placeholder that `ffuf` will replace with each username from the wordlist. So, it will try `username=john`, `username=jane`, etc.
+    * `email=x&password=x&cpassword=x`: These are static values. The fuzzer is only testing the username field, so the other fields are given arbitrary values. In a real world attack, or more in depth pentest, you may fuzz all of the fields.
+
+**`-H "Content-Type: application/x-www-form-urlencoded"`**
+
+* `-H` specifies an HTTP header.
+* `Content-Type: application/x-www-form-urlencoded` tells the server that the data being sent is in the standard URL-encoded format, which is typical for HTML forms.
+
+**`-u http://10.10.78.180/customers/signup`**
+
+* `-u` specifies the target URL.
+* `http://10.10.78.180/customers/signup` is the URL of the signup page that's being tested.
+
+**`-mr "username already exists"`**
+
+* `-mr` specifies a match regex.
+* `"username already exists"` is the regular expression to match.
+    * This tells `ffuf` to look for the string "username already exists" in the server's response. If it finds this string, it means that the username being tested is already in use. This is how the fuzzer determines which usernames are valid.
+
+**In summary:**
+
+This `ffuf` command is designed to brute-force usernames on a signup page. It sends POST requests to the signup URL, trying each username from the provided wordlist. It then checks the server's response for the message "username already exists" to identify valid usernames. This is a common technique for enumerating user accounts.
+
 #### 好的，以下是关于“自动化发现”的中文翻译：
 
 **什么是自动化发现？**
