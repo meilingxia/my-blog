@@ -47,6 +47,58 @@ Let's break down this `ffuf` command, which is commonly used in web application 
 
 This `ffuf` command is designed to brute-force usernames on a signup page. It sends POST requests to the signup URL, trying each username from the provided wordlist. It then checks the server's response for the message "username already exists" to identify valid usernames. This is a common technique for enumerating user accounts.
 
+
+
+
+
+```
+ffuf -w valid_usernames.txt:W1,/usr/share/wordlists/SecLists/Passwords/Common-Credentials/10-million-password-list-top-100.txt:W2 -X POST -d "username=W1&password=W2" -H "Content-Type: application/x-www-form-urlencoded" -u http://10.10.78.180/customers/login -fc
+```
+
+This `ffuf` command is designed to perform a brute-force attack on a login form. Let's break it down:
+
+**`ffuf`**
+
+* As before, this is the web fuzzer tool.
+
+**`-w valid_usernames.txt:W1,/usr/share/wordlists/SecLists/Passwords/Common-Credentials/10-million-password-list-top-100.txt:W2`**
+
+* `-w` specifies the wordlists.
+* `valid_usernames.txt:W1`: This indicates that the `valid_usernames.txt` file will be used as a wordlist, and the placeholder `W1` will be replaced with each username from this file.
+* `/usr/share/wordlists/SecLists/Passwords/Common-Credentials/10-million-password-list-top-100.txt:W2`: This indicates that the `10-million-password-list-top-100.txt` file will be used as a wordlist, and the placeholder `W2` will be replaced with each password from this file.
+* The colon and W1 and W2 are used to designate which wordlist will populate which part of the post request. This allows you to use multiple wordlists at the same time.
+
+**`-X POST`**
+
+* `-X` specifies the HTTP method, which is `POST` in this case. Login forms typically use POST to send credentials.
+
+**`-d "username=W1&password=W2"`**
+
+* `-d` specifies the data to be sent in the POST request.
+* `username=W1&password=W2`: This is the data itself.
+    * `username=W1`: `W1` will be replaced with usernames from the `valid_usernames.txt` wordlist.
+    * `password=W2`: `W2` will be replaced with passwords from the `10-million-password-list-top-100.txt` wordlist.
+    * This sets up ffuf to test every combination of username and password from the two wordlists.
+
+**`-H "Content-Type: application/x-www-form-urlencoded"`**
+
+* `-H` specifies the HTTP header.
+* `Content-Type: application/x-www-form-urlencoded`: This tells the server that the data is in the standard URL-encoded format.
+
+**`-u http://10.10.78.180/customers/login`**
+
+* `-u` specifies the target URL, which is the login page.
+
+**`-fc`**
+
+* `-fc` this stands for "filter status code". By default ffuf displays all status codes. If you want to only see successful logins, or failed logins you can filter them. Without any numbers following the -fc flag, it filters out all 403 status codes. 403 status codes mean "forbidden". This is useful because many login pages return 403 when a login fails.
+
+**In summary:**
+
+This `ffuf` command performs a brute-force attack on the login form at `http://10.10.78.180/customers/login`. It tries every combination of usernames from `valid_usernames.txt` and passwords from `10-million-password-list-top-100.txt`. By using the `-fc` flag, it filters out 403 errors, so that the results are easier to read.
+
+
+
 #### 好的，以下是关于“自动化发现”的中文翻译：
 
 **什么是自动化发现？**
