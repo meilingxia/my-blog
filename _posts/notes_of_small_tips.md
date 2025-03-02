@@ -1,3 +1,12 @@
+https://www.base64decode.org/
+
+https://www.base64encode.org/
+
+
+
+
+
+
 You're right to question how we know it's `/cookie-test` specifically! There are several ways to determine the path of a web resource, especially in a learning or penetration testing context:
 
 **1. Context from the Learning Material:**
