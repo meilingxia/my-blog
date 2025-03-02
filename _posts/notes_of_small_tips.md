@@ -1,3 +1,41 @@
+You're right to question how we know it's `/cookie-test` specifically! There are several ways to determine the path of a web resource, especially in a learning or penetration testing context:
+
+**1. Context from the Learning Material:**
+
+* **TryHackMe or similar platforms:** In the TryHackMe room or similar learning environments, the challenge or task description will almost always explicitly tell you the correct URL or path. This is done to guide you and ensure you're focusing on the intended vulnerability. In your case, the previous explanations and the surrounding text specifically state that the page being tested is /cookie-test.
+* **Walkthroughs and hints:** If you're stuck, look for walkthroughs, hints, or forum discussions related to the challenge. These resources will often provide the necessary information.
+
+**2. Web Application Discovery (Reconnaissance):**
+
+If you were approaching a real-world scenario or a "black box" test (where you have minimal information), you'd use various techniques to discover web resources:
+
+* **Directory and File Brute-Forcing:**
+    * Tools like `ffuf`, `gobuster`, or `dirb` can be used to scan a web server for known or common directories and files.
+    * These tools use wordlists to guess potential paths.
+    * For example, you could run `ffuf -w wordlist.txt -u http://10.10.26.233/FUZZ` and see what paths return a 200 OK status code.
+* **Web Spidering:**
+    * Tools like `Burp Suite's spider` or `OWASP ZAP's spider` can automatically crawl a website, following links and discovering new pages.
+    * This can reveal hidden directories and files.
+* **Manual Exploration:**
+    * Simply browsing the website and examining the URL structure can provide clues.
+    * Looking at the website's source code (View Page Source) can also reveal hidden links or JavaScript files.
+* **Checking robots.txt:**
+    * The `robots.txt` file (e.g., `http://10.10.26.233/robots.txt`) can sometimes list directories or files that the website owner wants to prevent search engines from indexing. While it is meant for robots, it can also give hints to attackers.
+* **Developer Tools:**
+    * Using your browser's developer tools (usually accessed by pressing F12) and looking at the "Network" tab, you can see all the requests and responses made by the website. This can reveal the paths of various resources.
+
+**3. Server Response Analysis:**
+
+* **HTTP Status Codes:** If you try accessing a non-existent path (e.g., `http://10.10.26.233/something-else`), you'll likely get a 404 Not Found error.
+* **Response Content:** The content of the server's response can also provide clues. For example, a 403 Forbidden error might indicate that a directory exists, but you don't have permission to access it.
+
+**In summary:**
+
+* In a controlled learning environment, the path is usually provided.
+* In a real-world scenario, you'd use a combination of automated and manual techniques to discover web resources.
+
+
+
 marblog@customer.acmeitsupport.thm
 Marblog12345#
 
