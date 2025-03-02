@@ -1,3 +1,62 @@
+marblog@customer.acmeitsupport.thm
+Marblog12345#
+
+好的，让我们用中文详细解释这个逻辑缺陷的实际案例：
+
+**逻辑缺陷实战：重置密码功能漏洞**
+
+我们将分析 Acme IT 支持网站（[http://10.10.26.233/customers/reset](http://10.10.26.233/customers/reset)）的“重置密码”功能。
+
+1.  **初始步骤：验证邮箱**
+    * 首先，网站会要求你输入与账户关联的邮箱地址。
+    * 如果输入的邮箱无效，你会收到错误信息：“Account not found from supplied email address”（未找到提供的邮箱对应的账户）。
+    * 为了演示，我们使用有效的邮箱地址：robert@acmeitsupport.thm。
+    * 然后，网站会进入下一步，要求你输入与该邮箱关联的用户名。
+
+2.  **验证用户名**
+    * 如果输入正确的用户名（例如：robert），并点击“Check Username”按钮，你会收到确认信息，提示密码重置邮件将发送到 robert@acmeitsupport.thm。
+
+3.  **漏洞分析：GET 和 POST 混合使用**
+    * 你可能会想，这个应用似乎很安全，因为需要同时知道邮箱和用户名，并且重置链接会发送到账户所有者的邮箱。
+    * 但是，这个应用在处理请求时存在逻辑缺陷：
+        * 在第二步，用户名通过 POST 请求发送到服务器。
+        * 邮箱地址通过 GET 请求的查询字符串发送。
+    * 我们可以使用 `curl` 命令来模拟这些请求：
+
+    * **Curl Request 1:**
+        ```bash
+        user@tryhackme$ curl 'http://10.10.26.233/customers/reset?email=robert%40acmeitsupport.thm' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=robert'
+        ```
+        * `-H 'Content-Type: application/x-www-form-urlencoded'`：设置请求头，告诉服务器我们发送的是表单数据。
+
+4.  **PHP $_REQUEST 变量的缺陷**
+    * 网站通过查询字符串（GET）获取用户账户信息，但密码重置邮件的发送地址却使用了 PHP 的 `$_REQUEST` 变量。
+    * `$_REQUEST` 是一个数组，包含来自查询字符串（GET）和 POST 请求的数据。
+    * **关键问题：** 如果查询字符串和 POST 请求使用了相同的键名（例如：`email`），`$_REQUEST` 优先使用 POST 请求中的值。
+    * 因此，我们可以通过在 POST 请求中添加一个 `email` 参数，来控制密码重置邮件的发送地址。
+
+5.  **漏洞利用：篡改邮件发送地址**
+    * **Curl Request 2:**
+        ```bash
+        user@tryhackme$ curl 'http://10.10.26.233/customers/reset?email=robert%40acmeitsupport.thm' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=robert&email=marblog@customer.acmeitsupport.thm'
+        ```
+        * 在这个请求中，我们添加了 `email=attacker@hacker.com` 到 POST 数据中。
+        * 由于 `$_REQUEST` 优先使用 POST 数据，密码重置邮件将被发送到 attacker@hacker.com，而不是 robert@acmeitsupport.thm。
+
+6.  **实际操作：获取 Robert 账户的访问权限**
+    * 为了完成这个练习，你需要先在 Acme IT 支持网站的客户区创建一个账户。你的账户邮箱格式为 `{username}@customer.acmeitsupport.thm`。
+    * 然后，再次运行 Curl Request 2，但这次将 `email` 参数的值设置为你的账户邮箱：
+        ```bash
+        user@tryhackme:~$ curl 'http://10.10.26.233/customers/reset?email=robert@acmeitsupport.thm' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=robert&email=marblog@customer.acmeitsupport.thm'
+        ```
+    * 这样，密码重置链接将被发送到你的账户邮箱，并在你的工单中显示。
+    * 通过这个链接，你就可以以 Robert 的身份登录，并查看他的工单，其中包含一个 flag。
+
+**总结：**
+
+这个案例展示了如何利用 PHP `$_REQUEST` 变量的特性，通过混合使用 GET 和 POST 请求，篡改密码重置邮件的发送地址，从而获取目标账户的访问权限。这个漏洞的根本原因是应用程序没有正确验证和过滤用户输入，以及对 GET 和 POST 请求的处理不当。
+
+
 The primary security vulnerability in the code snippet you provided is a **weak and predictable access control mechanism** based solely on the URL's prefix. Here's a breakdown of the problems:
 
 **1. Client-Side Validation (Implied):**
